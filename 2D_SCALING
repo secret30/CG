@@ -1,29 +1,35 @@
+//2D scaling
 #include<stdio.h>
 #include<graphics.h>
 #include<conio.h>
-#include<dos.h>
-#include<math.h>
-void scale(int x1,int y1,int x2,int y2){
-int a1,b1,a2,b2;
-float Sx,Sy;
-printf("Enter the Scale Vector");
-scanf("%f%f",&Sx,&Sy);
-a1=x1*Sx;
-a2=x2*Sx;
-b1=y1*Sy;
-b2=y2*Sy;
-setcolor(6);
-rectangle(a1,b1,a2,b2);
-}
-void main()
+int main ()
 {
-int gd,gm,xmx,ymx,xmn,ymn;
-printf("Enter the xmax ymax and xmin ymin:");
-scanf("%d%d%d%d",&xmx,&ymx,&xmn,&ymn);
-detectgraph(&gd,&gm);
-initgraph(&gd,&gm,"C:\\TURBOC3\\BGI");
-rectangle(xmn,ymn,xmx,ymx);
-scale(xmn,ymn,xmx,ymx);
-getch();
-closegraph();
+    int x, y, x1, y1, x2, y2;
+    int scl_fact_x, scl_fact_y;
+    int gd = DETECT, gm;
+    initgraph (&gd, &gm, "C:\\TURBOC3\\BGI");
+    printf("\t\t\t ***** Scaling *****\n");
+    printf("\n\t\t\t Please enter First coordinate of Triangle");
+    scanf("%d%d", &x, &y);
+    printf("\n\t\t\t Please enter Second coordinate of Triangle");
+    scanf("%d%d", &x1, &y1);
+    printf("\n\t\t\t Please enter third coordinate of Triangle");
+    scanf("%d%d", &x2, &y2);
+    line(x,y,x1,y1);
+    line(x1,y1,x2,y2);
+    line(x2,y2,x,y);
+    printf("\n\t\t\t Please enter Scaling factor x and y");
+    scanf("%d%d", &scl_fact_x, &scl_fact_y);
+    x= x* scl_fact_x;
+    y= y* scl_fact_y;
+    x1= x1* scl_fact_x;
+    y1= y1* scl_fact_y;
+    x2= x2* scl_fact_x;
+    y2= y2* scl_fact_y;
+    line (x,y,x1,y1);
+    line (x1,y1,x2,y2);
+    line (x2,y2,x,y);
+    getch();
+    closegraph();
+    return 0;
 }
